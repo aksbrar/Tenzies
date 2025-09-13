@@ -11,12 +11,21 @@ export default function Die(){
     return all
   }
 
+  // roll
+  function roll(){
+    setAllDice(generateAllDice())
+  }
+
 
   return (
-    <div className="die-container">
-      {allDice.map(num => {
-        return <button className="die-bt" id="dieBt">{num}</button>
-      })}
-    </div>
+    <>
+      <div className="die-container">
+        {allDice.map(num => {
+          return <button className="die-bt" id="dieBt">{num}</button>
+        })}
+      </div>
+
+      <button onClick={roll} className="roll-btn" id="rollBtn">Roll</button>
+    </>
   )
 }
