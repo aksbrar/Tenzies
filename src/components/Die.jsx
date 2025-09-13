@@ -25,7 +25,16 @@ export default function Die(){
 
   // hold
   function hold(id){
-    console.log(id)
+    setAllDice(prev => {
+      return prev.map(item => {
+        if (item.key === id){
+          return {...item , isHeld : true}
+        }
+        else {
+          return item
+        }
+      })
+    })
   }
 
   return (
