@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react"
+import { nanoid } from 'nanoid'
 
 export default function Die(){
 
   // dice array and state
   const [allDice, setAllDice] = useState(generateAllDice())
+  
   function generateAllDice(){
     const all = Array.from({length:10}, ()=>{
-      return Math.floor(Math.random()*6) + 1
+      return {
+        value : Math.floor(Math.random()*6) + 1,
+        isHeld : false,
+        key : nanoid(),
+      } 
+      
     })
     return all
   }
@@ -16,12 +23,21 @@ export default function Die(){
     setAllDice(generateAllDice())
   }
 
+  // hold
+  function hold(id){
+    console.log(id)
+  }
 
   return (
     <>
       <div className="die-container">
-        {allDice.map(num => {
-          return <button className="die-bt" id="dieBt">{num}</button>
+        {allDice.map(item => {
+          return <button key={item.key}
+                         className={`die-bt ${item.isHeld ? "is-held" : ""}`} 
+                         id="dieBt"
+                         onClick={(event)=>{hold(item.key)}}>
+                          {item.value}
+                 </button>
         })}
       </div>
 

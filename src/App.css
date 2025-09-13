@@ -50,3 +50,7 @@ body{
   font-family: Karla, sans-serif;
   border: none;
 }
+
+.is-held{
+  background-color: #59E391;
+}
