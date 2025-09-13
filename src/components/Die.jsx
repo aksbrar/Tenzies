@@ -20,7 +20,13 @@ export default function Die(){
 
   // roll
   function roll(){
-    setAllDice(generateAllDice())
+    setAllDice(oldDice => {
+      return oldDice.map(item => {
+        return item.isHeld === true ? 
+          item : 
+          {...item, value : Math.floor(Math.random()*6) + 1}
+      })
+    })
   }
 
   // hold
